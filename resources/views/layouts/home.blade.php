@@ -84,8 +84,14 @@
                 <div class="col-md-4">
                     <div class="right_section">
                         <ul class="nav navbar-nav">
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">Register</a></li>
+                            @if(Auth::check())
+                            
+                            <li><a href="{{url('/logout')}}">Logout</a></li>
+                            @else
+                            <li><a href="{{url('/login')}}">Login</a></li>
+                            <li><a href="{{url('/register')}}">Register</a></li>
+
+                            @endif
                             <li class="dropdown lang">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">En <i
@@ -140,8 +146,7 @@
                     <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav">
                             <li class="active"><a href="{{url('/')}}">Home</a></li>
-
-                            <li><a href="category.html">Mobile</a></li>
+                          
 
                             <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">More
                                 <span><i class="fa fa-angle-down"></i></span></a>

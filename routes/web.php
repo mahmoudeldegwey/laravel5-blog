@@ -17,16 +17,17 @@ Route::get('/', function () {
 */
 
 // Multilang
+
 Route::get('localization/{locale}','LocalizationController@index');
 
 Route::get('/', 'HomeController@index');
+
 Route::get('/post/{id}',['as'=>'home.post','uses'=>'HomeController@post']);
 Route::get('/category/{id}',['as'=>'home.category','uses'=>'HomeController@category']);
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Auth::routes();
 
 Route::group(['middleware'=>'admin'],function(){
 	Route::resource('/admin/user', 'AdminUserController');	

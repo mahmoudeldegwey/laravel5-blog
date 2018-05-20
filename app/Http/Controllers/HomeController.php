@@ -22,6 +22,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /// Front End View
     public function index()
     {
         // Mobile
@@ -40,7 +42,7 @@ class HomeController extends Controller
     }
 
 
-    /// Front End View
+
 
     public function post($id){
         $post = Post::findOrFail($id);
@@ -54,5 +56,11 @@ class HomeController extends Controller
         $category = Category::findOrFail($id);
         $posts = $category->posts()->paginate(3); 
         return view('front.category',compact('category','posts'));
+    }
+
+    public function menu(){
+        //$categories = Category::take(4)->get();
+        //return view('layouts.home',compact('categories'));
+
     }
 }
