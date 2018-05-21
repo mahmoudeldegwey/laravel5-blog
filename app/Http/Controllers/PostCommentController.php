@@ -51,7 +51,7 @@ class PostCommentController extends Controller
        // return $data;
 
         Comment::create($data);
-        $request->session()->flash('comment_message','Thank You For Your Opinon');
+        $request->session()->flash('comment_message','Thank You For Your Comment the admin with review it and approve the comment');
         return redirect()->back();
     }
 

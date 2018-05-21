@@ -9,7 +9,7 @@
 
 <div class="entity_wrapper">
     <div class="entity_title header_purple">
-        <h1><a href="category.html" target="_blank">Mobile</a></h1>
+        <h1><a href="category.html" target="_blank">{{$category->name}}</a></h1>
     </div>
     <!-- entity_title -->
 </div>
@@ -77,6 +77,7 @@
 <!--
 	Sidebar
 -->
+@include('front.sidebar')
 
 </div>
 <!-- row -->

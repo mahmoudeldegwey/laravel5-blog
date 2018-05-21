@@ -62,11 +62,10 @@
                 <div class="media-body">
 
                     <h3 class="media-heading"><a href="{{route('home.post', $relatedpost->id )}}" target="_self">{{$relatedpost->title}}</a></h3>
-                    <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
+                    <span class="media-date"><a href="#">{{$relatedpost->created_at->diffForHumans()}}</a>,  by: <a href="#">{{$relatedpost->user->name}}</a></span>
 
                     <div class="media_social">
-                        <span><a href="#"><i class="fa fa-share-alt"></i>424</a> Shares</span>
-                        <span><a href="#"><i class="fa fa-comments-o"></i>4</a> Comments</span>
+                        <span><a href="#"><i class="fa fa-comments-o"></i>{{count($relatedpost->comments)}}</a> Comments</span>
                     </div>
                 </div>
             </div>
@@ -88,6 +87,10 @@
         <h2>Readers Comment</h2>
     </div>
     <!-- entity_title -->
+
+        @if(Session::has('comment_message'))
+            <div class="alert">{{session('comment_message')}}</div>
+        @endif
 
 @foreach($comments as $comment)
     <div class="media">
@@ -141,8 +144,10 @@
 <!--Entity Comments -->
 
 </div>
-<!--Left Section-->
 
+
+<!--Left Section-->
+@include('front.sidebar')
 
 </div>
 <!-- row -->

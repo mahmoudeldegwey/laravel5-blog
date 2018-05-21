@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="logo">
-                        <a href="index.html"><img src="img/logo.png" alt="Tech NewsLogo"></a>
+                        <a href="index.html"><img src="{{asset('img/logo.png')}}" alt="Tech NewsLogo"></a>
                     </div>
                     <!-- Logo Section -->
                 </div>
@@ -146,45 +146,21 @@
                     <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav">
                             <li class="active"><a href="{{url('/')}}">Home</a></li>
-                          
-
+                            @foreach($categories as $cat)
+                            <li class="active"><a href="{{route('home.category',$cat->id)}}">{{$cat->name}}</a></li>
+                            @endforeach
                             <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">More
                                 <span><i class="fa fa-angle-down"></i></span></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="m-menu-content">
                                             <ul class="col-sm-3">
-                                                <li class="dropdown-header">Widget Haeder</li>
-                                                <li><a href="#">Awesome Features</a></li>
-                                                <li><a href="#">Clean Interface</a></li>
-                                                <li><a href="#">Available Possibilities</a></li>
-                                                <li><a href="#">Responsive Design</a></li>
-                                                <li><a href="#">Pixel Perfect Graphics</a></li>
+                                        @foreach($categoriesAll as $all)
+
+                                                <li class="dropdown-header"><a href="{{route('home.category',$all->id)}}" title="">{{$all->name}}</a></li>
+                                        @endforeach
                                             </ul>
-                                            <ul class="col-sm-3">
-                                                <li class="dropdown-header">Widget Haeder</li>
-                                                <li><a href="#">Awesome Features</a></li>
-                                                <li><a href="#">Clean Interface</a></li>
-                                                <li><a href="#">Available Possibilities</a></li>
-                                                <li><a href="#">Responsive Design</a></li>
-                                                <li><a href="#">Pixel Perfect Graphics</a></li>
-                                            </ul>
-                                            <ul class="col-sm-3">
-                                                <li class="dropdown-header">Widget Haeder</li>
-                                                <li><a href="#">Awesome Features</a></li>
-                                                <li><a href="#">Clean Interface</a></li>
-                                                <li><a href="#">Available Possibilities</a></li>
-                                                <li><a href="#">Responsive Design</a></li>
-                                                <li><a href="#">Pixel Perfect Graphics</a></li>
-                                            </ul>
-                                            <ul class="col-sm-3">
-                                                <li class="dropdown-header">Widget Haeder</li>
-                                                <li><a href="#">Awesome Features</a></li>
-                                                <li><a href="#">Clean Interface</a></li>
-                                                <li><a href="#">Available Possibilities</a></li>
-                                                <li><a href="#">Responsive Design</a></li>
-                                                <li><a href="#">Pixel Perfect Graphics</a></li>
-                                            </ul>
+
                                         </div>
                                     </li>
                                 </ul>
