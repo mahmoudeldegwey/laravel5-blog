@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -26,8 +26,8 @@ class HomeController extends Controller
     /// Front End View
     public function index()
     {
-        $categories = Category::take(4)->get();
-        $categoriesAll = Category::all();        
+        //$categories = Category::take(4)->get();
+        //$categoriesAll = Category::all();        
 
         // Mobile
         $mobile = Category::where('name','mobile')->first();
@@ -48,8 +48,7 @@ class HomeController extends Controller
 
 
     public function post($id){
-        $categories = Category::take(4)->get();
-        $categoriesAll = Category::all();        
+        //$categoriesAll = Category::all();        
         $post = Post::findOrFail($id);
         $comments = $post->comments()->whereIsActive(1)->get();
         $relatedposts = Post::where('category_id',$post->category_id)->orderBy('id','desc')->take(4)->get();
@@ -57,8 +56,8 @@ class HomeController extends Controller
     }
 
     public function category($id){
-        $categories = Category::take(4)->get();
-        $categoriesAll = Category::all();        
+       // $categories = Category::take(4)->get();
+        //$categoriesAll = Category::all();        
         $category = Category::findOrFail($id);
         $posts = $category->posts()->paginate(3); 
         return view('front.category',compact('category','posts','categories','categoriesAll'));

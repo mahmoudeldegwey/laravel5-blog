@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -15,6 +15,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        View::composer('layouts/home',function($view){
+
+            $view->with('categories',\App\Category::take(4)->get());
+            $view->with('allcategories',\App\Category::all());
+        });
+
     }
 
     /**
@@ -24,6 +31,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 }

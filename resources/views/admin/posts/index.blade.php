@@ -25,7 +25,8 @@
         <th>shotr body</th>
         <th>category</th>
         <th>user</th>       
-        <th>view comments</th>       
+        <th>view comments</th>
+        <th>post</th>       
         <th>Created</th>
         <th>Updated</th>
         <th>Edit</th>
@@ -43,6 +44,7 @@
         <td>{{$post->category->name}}</td>
         <td>{{$post->user->name}}</td>
         <td><a href="{{route('comments.show',$post->id)}}" >Comments</a></td>
+        <td><a href="{{route('home.post',$post->id)}}" >View Post</a></td>
         <td>{{$post->updated_at->diffForHumans()}}</td>
         <td>{{$post->updated_at->diffForHumans()}}</td>
         <td><a class="btn btn-default" href="{{route('posts.edit',$post->id)}}" title="">Edit</a></td>

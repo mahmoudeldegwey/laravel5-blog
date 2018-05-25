@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Comment;
 use App\Post;
+use App\Http\Requests\CommentRequest;
 
 class PostCommentController extends Controller
 {
@@ -36,11 +37,12 @@ class PostCommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
         $post =  $request->all();
         $user = Auth::user();
-        $data = [
+        if ($request->ajax()) {
+            $data = [
             'post_id'=> $request->post_id,
             'author'=>$user->name,
             'email'=>$user->email,
@@ -48,11 +50,14 @@ class PostCommentController extends Controller
             'body'=>$request->body
         ];
 
-       // return $data;
+           // return $data;
 
-        Comment::create($data);
-        $request->session()->flash('comment_message','Thank You For Your Comment the admin with review it and approve the comment');
-        return redirect()->back();
+            Comment::create($data);
+           //return $request->session()->flash('comment_message','Thank You For Your Comment the admin with review it and approve the comment');
+            
+        }
+
+        //return redirect()->back();
     }
 
     /**

@@ -87,11 +87,7 @@
         <h2>Readers Comment</h2>
     </div>
     <!-- entity_title -->
-
-        @if(Session::has('comment_message'))
-            <div class="alert">{{session('comment_message')}}</div>
-        @endif
-
+        <div id="messageCommentsas"></div>
 @foreach($comments as $comment)
     <div class="media">
         <div class="media-left">
@@ -114,6 +110,7 @@
 </div>
 <!--Readers Comment-->
 
+
 <div class="widget_advertisement">
     <img class="img-responsive" src="/img/category_advertisement.jpg" alt="feature-top">
 </div>
@@ -126,7 +123,7 @@
     <!--Entity Title -->
 
     <div class="entity_comment_from">
-{!! Form::open(['method' => 'POST','action'=>'PostCommentController@store']) !!}
+{!! Form::open(['id'=>'comments','method' => 'POST','action'=>'PostCommentController@store']) !!}
             <div class="form-group">
                 <input type="hidden" name="post_id" value="{{$post->id}}">
             </div>
@@ -156,4 +153,6 @@
 <!-- container -->
 
 </section>
+
+
 @stop

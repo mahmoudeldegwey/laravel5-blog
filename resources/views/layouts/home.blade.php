@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="logo">
-                        <a href="index.html"><img src="{{asset('img/logo.png')}}" alt="Tech NewsLogo"></a>
+                        <a href="{{url('/')}}"><img src="{{asset('img/logo.png')}}" alt="Tech NewsLogo"></a>
                     </div>
                     <!-- Logo Section -->
                 </div>
@@ -146,19 +146,22 @@
                     <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav">
                             <li class="active"><a href="{{url('/')}}">Home</a></li>
-                            @foreach($categories as $cat)
-                            <li class="active"><a href="{{route('home.category',$cat->id)}}">{{$cat->name}}</a></li>
+
+                            @foreach($categories as $cate)
+                            <li><a href="{{route('home.category',$cate->id)}}">{{$cate->name}}</a></li>
                             @endforeach
+
+
                             <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">More
                                 <span><i class="fa fa-angle-down"></i></span></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="m-menu-content">
                                             <ul class="col-sm-3">
-                                        @foreach($categoriesAll as $all)
-
-                                                <li class="dropdown-header"><a href="{{route('home.category',$all->id)}}" title="">{{$all->name}}</a></li>
-                                        @endforeach
+                            @foreach($allcategories as $allcate)
+                                <li><a href="{{route('home.category',$allcate->id)}}">{{$allcate->name}}</a></li>
+                            @endforeach
+                                                    
                                             </ul>
 
                                         </div>
@@ -296,5 +299,32 @@
 
 <!-- Theme Script -->
 <script src="{{asset('js/script.js')}}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#comments").on('submit',function(e){
+            e.preventDefault();
+            var data = $(this).serialize();
+            var url = $(this).attr('action');
+            var post = $(this).attr('method');
+            //alert(data);
+            $.ajax({
+                type:post,
+                url:url,
+                data:data,
+                dataTy:'json',
+                success : function(data){
+                    $("#messageCommentsas").html("thank you for add a comment , the admin will review it and approve ");
+                    $("#inputComment").val(" ");
+                }
+            })
+
+        })
+    })
+
+
+</script>
+
+
 </body>
 </html>
